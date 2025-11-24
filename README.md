@@ -1,136 +1,202 @@
-# ProductionPlanningPortfolio
-Production Planning
 Production Material Accuracy & Component Tracking Dashboard
 (Manufacturing – Footwear Industry)
 Production Planning (MES) Portfolio by Riska Amylatul Askiyah
-
+to download this file in xlxs format please check this link: github
 
 📘 Background
 
-This portfolio presents a data analysis and tracking system designed for the footwear manufacturing environment. In mass-production plants, material accuracy is a critical factor that directly impacts production efficiency, cost control, and inventory integrity. Variances between SAP records (planned consumption) and MES records (actual consumption) often occur due to real-world operational dynamics, scanning errors, scrap, or process deviations.
+This portfolio presents a practical data-tracking and analysis system built for the footwear manufacturing industry.
 
-This file demonstrates an end-to-end approach to identifying, cleaning, analyzing, and visualizing material consumption data across production lines and processes (Cutting, Sewing, StockFitting, Assembling). It showcases applied analytical understanding relevant to roles such as Data Analyst, Production Planner, Industrial Engineer, Process Analyst, and Supply Chain Analyst in the footwear sector.
+Material accuracy is an essential component of production performance. Differences between SAP Qty (planned consumption) and MES Qty (actual scanned consumption) commonly occur due to real operational variations such as scrap, scanning mistakes, missing scans, rework, or deviations in process behavior.
+
+This file demonstrates an end-to-end workflow:
+
+extracting production scan data,
+
+referencing component master data,
+
+validating quantity accuracy,
+
+analyzing variances,
+
+summarizing trends,
+
+forecasting values, and
+
+visualizing manufacturing performance using Excel.
+
+The structure and analysis fully align with the responsibilities of a Production Planner, Manufacturing Analyst, Industrial Engineer, Supply Chain Analyst, or Data Analyst within the footwear sector.
 
 
 🎯 Purpose of This File
 
-To demonstrate the ability to analyze manufacturing production data using Excel.
+This portfolio is designed to demonstrate:
 
-To evaluate material usage accuracy by comparing SAP Qty (planned) and MES Qty (actual).
+Ability to perform manufacturing data analysis using Excel.
 
-To provide insights on production behavior across lines, shifts, and processes.
+Comparison of SAP Qty (theoretical consumption) vs MES Qty (actual usage).
 
-To calculate key metrics such as total scans, shortages, overs, variances, and accuracy rate.
+Monitoring of production behavior across lines, shifts, and processes.
 
-To build an automated system using formulas (VLOOKUP, HLOOKUP, SUMIFS, COUNTIFS).
+Calculation of key operational metrics:
 
-To create a forecasting sheet (Target & Actual) for daily and operational performance monitoring.
+total scans
 
-To showcase a real manufacturing workflow understanding relevant to footwear operations.
+overs
+
+shorts
+
+matches
+
+total variance (465 units)
+
+Use of Excel formulas (VLOOKUP, HLOOKUP, SUMIFS, COUNTIFS, Moving Average).
+
+Construction of a forecast sheet for monitoring target vs actual performance.
+
+Understanding of manufacturing workflow in footwear production.
 
 
 🏭 Industry Process Understanding
 
-The footwear manufacturing workflow involves multiple production stages:
+Footwear Production Flow
 
-1. Cutting – Raw materials are cut into required shapes.
+1. Cutting – Raw materials (upper, lining, outsole sheet) are cut into required parts.
 
-2. Sewing – Upper components are stitched and assembled.
+2. Sewing – Upper components are stitched, reinforced, and assembled.
 
-3. StockFitting – Components are prepared and matched with semi-finished goods.
+3. StockFitting – Components are prepared and combined with semi-finished parts.
 
-4. Assembling – Upper and outsole are combined into the final product.
+4. Assembling – Upper and outsole join to form the finished product.
 
-Throughout these processes, each material is identified by:
+System Understanding
 
-ComponentCode – Internal material identifier.
+ComponentCode → Unique material identification
 
-Description – Material name (Upper, Outsole, Accessory, etc.).
+Description → Material name
 
-UnitWeight_kg – Reference for physical consumption validation.
+UnitWeight_kg → Material’s reference weight (used for consumption validation)
 
-Data flows through:
+Data Flow Structure
 
-SAP → planning, BOM, and theoretical material usage
+SAP System
+→ Holds BOM, routing, and planned material usage
 
-MES → real-time scanning and actual consumption
+MES System
+→ Captures actual barcode scans and real-time consumption
 
-Analysis File → compares theory vs reality to identify operational variances
+This Analysis File
+→ Compares planned vs actual, identifies accuracy gaps, and highlights improvement opportunities
 
-This analysis enables process improvement, cost reduction, and production accuracy monitoring.
 
+📊 Contents of This File
 
-📊 Contents of this File
-
-1. RawData
-
-Detailed production records per date, shift, line, process, component, SAP Qty, MES Qty, and differences.
-
-2. ComponentsMaster
-
-Reference table for ComponentCode, Description, and UnitWeight_kg.
-
-3. Summary Dashboard (Pivot Tables)
-
-Line-level performance
-
-Process-level consumption
-
-Total overs, shorts, matches
-
-MES vs SAP variance
-
-4. Forecast – Target & Actual
+1. RawData Sheet
 
 Contains:
 
-Daily Targets
+Date, Shift, Line, Process
 
-Actual MES Qty per day
+MES_Code
 
-HLOOKUP-based target retrieval
+ComponentCode & Component Description
 
-Variance & performance tags
+SAP Qty (planned)
 
-Simple forecast trend indicator
+MES Qty (actual scanned)
 
-5. Automated Formula Sheet
+Difference (variance)
 
-Includes formulas such as:
+Status (Over/Short/Match)
+This is the primary operational dataset derived from factory MES scanning.
 
-=VLOOKUP(A2, RawData!$A:$I, 9, FALSE)
-=SUMIFS(RawData!$I:$I, RawData!$A:$A, A2)
-=VLOOKUP(B2, Forecast!$A$1:$F$2, 2, FALSE)
+
+2. ComponentsMaster Sheet
+
+Reference master table containing:
+
+ComponentCode
+
+Description
+
+UnitWeight_kg
+Used for data validation and material identification.
+
+
+3. Pivot Table Sheet
+
+Contains multiple pivot tables analyzing:
+
+Line-level performance
+
+Process-level variance
+
+Overs vs Shorts
+
+Total variance (465 units)
+
+Scanning behavior patterns
+
+Pivot filters include Line, Process, Component, and Status.
+
+
+4. Forecast Target & Actual Sheet
+
+Includes:
+
+Daily target values (via VLOOKUP)
+
+Actual MES_Qty aggregated per day
+
+Variance & performance indicators
+
+3-Day Moving Average Forecast
+Formula sample:
+=AVERAGE(B2:B4)
+
+
+5. Summary_Calculations Sheet
+
+Contains automated metrics using COUNTIF, SUMIFS, and reference checks, such as:
+
+Total scans
+
+Total overs, shorts, matches
+
+Total SAP Qty
+
+Total MES Qty
+
+
+6. Balance_Check Sheet
+
+Uses SUMIFS to confirm data consistency and ensure total calculations match pivot results.
 
 
 🔍 Insights & Findings
 
-Overs occurred more frequently than shorts (44 overs vs 31 shorts).
+Total variance of 465 units indicates deviation between theoretical and actual usage.
 
-Certain lines (Line-4 Sewing, Line-5 StockFitting) show negative variances, indicating under-scanning or missing records.
+Overs (44) occur more frequently than shorts (31), suggesting scanning redundancy in some areas.
 
-Cutting and Sewing generally maintain closer alignment between SAP and MES.
+Negative variances appear in processes such as Line-4 Sewing and Line-5 StockFitting, indicating under-scanning or missing records.
 
-Variance patterns can be used to set priority improvement areas.
+Cutting and Sewing maintain closer MES–SAP alignment than other processes.
 
-
-🌟 Opportunities & Improvements
-
-Integrate barcode validation to reduce over-scanning.
-
-Introduce real-time variance alerts.
-
-Improve operator training for scanning discipline.
-
-Apply predictive analysis for material usage forecasting.
-
-Build a full Power BI version of the dashboard.
+Variance patterns can be used to prioritize process improvements and operator training.
 
 
-🔧 Notes for Users / Instruksi Pengguna
+🌟 Improvement Opportunities
 
-Input new daily data in RawData only.
+Implement barcode validation or double-scan prevention to reduce over-scanning.
 
-All summaries, dashboards, and forecasts update automatically.
+Add real-time MES variance alerting.
 
-Do not edit formulas in colored cells.
+Improve operator training on scanning discipline.
+
+Enhance material handling accuracy during shift transitions.
+
+Expand forecasting into error-measured predictive modeling (MAPE-based).
+
+Build a Power BI version for interactive real-time visibility.
+![Uploading image.png…]()
